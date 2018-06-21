@@ -1,4 +1,4 @@
 class Blog < ApplicationRecord
   belongs_to :user
-  has_many :comments, dependant: :destroy
+  has_many :comments, dependent: :destroy
 end
