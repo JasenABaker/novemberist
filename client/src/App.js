@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import {Header, TitleDiv, NavBar} from './components/styled_components/header'
+import {Page, Aside} from './components/styled_components/container'
+import Home from './components/Home'
 import logo from './logo.svg';
 import './App.css';
 
@@ -22,7 +24,16 @@ class App extends Component {
               <li><a href="#">SignIn</a></li>
             </NavBar>
         </Header>
-        Hello from App
+        <Page>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Home}/>
+          </Switch>
+        </Router>
+        <Aside>
+          Hello from Aside
+        </Aside>
+        </Page>
       </div>
     );
   }
