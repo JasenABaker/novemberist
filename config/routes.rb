@@ -5,8 +5,7 @@ Rails.application.routes.draw do
     resources :blogs
     resources :wips
     resources :comments
-    resources :collections do
-      resources :shorts
-    end
+    resources :collections
+    resources :shorts
   end
 end

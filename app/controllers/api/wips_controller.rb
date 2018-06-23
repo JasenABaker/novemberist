@@ -30,6 +30,6 @@ class Api::WipsController < ApplicationController
     private
 
     def wip_params
-        params.require(:wip).permit(:title, :content)
+        params.require(:wip).permit(:title, :content, :draft, :percent)
     end
 end

@@ -1,26 +1,22 @@
 class Api::ShortsController < ApplicationController
     def index
-        @collection = Collection.find(params[:collection_id])
-        @shorts = @collection.shorts
+        @shorts = Short.all
         render json: @shorts
     end
 
     def create
-        @collection = Collection.find(params[:collection_id])
-        @short = @collection.shorts.create(short_params)
+        @short = Short.create(short_params)
 
         render json: @short
     end
 
     def show
-        @collection = Collection.find(params[:collection_id])
-        @short = @collection.shorts.id(params[:id])
+        @short = Short.find(params[:id])
         render json: @short
     end
 
     def update
-        @collection = Collection.find(params[:collection_id])
-        @short = @collection.shorts.id(params[:id])
+        @short = Short.find(params[:id])
         @short.update!(short_params)
         render json: @short
     end
