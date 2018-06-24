@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { MainPage, CarouselContainer, SecHomeCon, BlogCon, Children, Dot, Dots, Arrow } from './styled_components/container'
+import { MainPage, CarouselContainer, SecHomeCon, BlogCon, Children, Dot, Dots, Arrow, CarouselContent } from './styled_components/container'
 import makeCarousel from 'react-reveal/makeCarousel'
 import Slide from 'react-reveal/Slide'
-import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
-import Image from './styled_components/images/nasa.jpg'
+import ImageOne from './styled_components/images/image1.jpg'
+import ImageTwo from './styled_components/images/image2.jpg'
+import ImageThree from './styled_components/images/image3.jpg'
+import ImageFour from './styled_components/images/image4.jpg'
+import ImageFive from './styled_components/images/image5.jpg'
 
 
 const CarouselUI = ({ position, total, handleClick, children }) => (
@@ -24,6 +27,7 @@ const CarouselUI = ({ position, total, handleClick, children }) => (
     </CarouselContainer>
 )
 const Carousel = makeCarousel(CarouselUI)
+
 
 class Home extends Component {
     state = {
@@ -55,18 +59,20 @@ class Home extends Component {
 
     render() {
         const shorts = this.state.shorts
+        const images = [ImageOne,ImageTwo,ImageThree,ImageFour,ImageFive]
         return (
             this.state.isloaded ?
                 <MainPage>
                     <Carousel defaultWait={7000}>
-                        {this.state.shorts.map((short) => {
+                        {this.state.shorts.map((short, index) => {
                             return (
                                 <Slide right>
-                                    <div>
+                                    <CarouselContent>
+                                        <img src={images[index]} alt="image" />
                                         <h1>{short.title}</h1>
                                         <p>{short.content}</p>
                                         <button>Read More</button>
-                                    </div>
+                                    </CarouselContent>
                                 </Slide>
                             )
                         })}

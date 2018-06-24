@@ -63,19 +63,31 @@ export const CarouselContainer = styled.div`
     overflow: hidden;
 
     h1{
-        padding-left: 20px;
         margin: 0;
     }
     p{
         height: 10vh;
         width: 55vw;
-        padding-left: 20px;
-        padding-bottom: 5px;
+        padding-bottom: 7px;
         overflow: hidden;
         margin: 10 0 0 0;
     }
-
 `
+export const CarouselContent = styled.div`
+    height: 25vh;
+    width: 57vw;
+    padding-left: 20px;
+    position: relative;
+    overflow: hidden;
+
+    img {
+        height: auto;
+        width: 100%;
+        position: absolute;
+        z-index: -4;
+    }
+`
+
 const width = '60vw', height='25vh';
 export const Children  = styled.div`
   width: ${width};
@@ -93,7 +105,7 @@ export const Arrow = styled.div`
   font-size: 2em;
   cursor: pointer;
   user-select: none;
-  ${props => props.right ? css`left: 90%;` : css`left: -4%;`}
+  ${props => props.right ? css`left: 94%;` : css`left: -4%;`}
 `
 export const Dot = styled.span`
   font-size: 1.5em;
@@ -103,6 +115,7 @@ export const Dot = styled.span`
 `
 export const Dots = styled.span`
   text-align: center;
+  padding-left: 20px;
   width: ${width};
   z-index: 100;
 `
