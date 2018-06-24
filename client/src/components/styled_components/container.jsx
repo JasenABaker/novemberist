@@ -61,20 +61,35 @@ export const CarouselContainer = styled.div`
     margin-top: 30px;
     position: relative;
     overflow: hidden;
+    font-family: 'Lora', serif
 
     h1{
-        margin: 0;
+        color: #F2545B;
+        margin: 5px 0 0 10px;
+        text-transform: uppercase;
+    }
+    h4{
+        color: #F2545B;
+        margin: 0 10px;
     }
     p{
         height: 10vh;
         width: 55vw;
-        padding-bottom: 7px;
+        padding-bottom: 4px;
         overflow: hidden;
-        margin: 10 0 0 0;
+        line-height: 16px;
+        font-size: 14px;
+        margin-bottom: 5px;
+        margin-left: 10px;
+        color: #EAF4F4;
+        background-color: rgba(0,0,0,.5);
+    }
+    a {
+        margin: 10px;
     }
 `
 export const CarouselContent = styled.div`
-    height: 25vh;
+    height: 26vh;
     width: 57vw;
     padding-left: 20px;
     position: relative;
@@ -142,4 +157,9 @@ export const BlogCon = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     }
+`
+export const TitleCard = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
 `
