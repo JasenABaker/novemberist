@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import axios from 'axios'
+import Modal from 'react-modal'
 import { Header, TitleDiv, NavBar } from './components/styled_components/header'
 import { Page, Aside, AsideImg, InsideAside } from './components/styled_components/container'
 import Image from './components/styled_components/images/me.jpg'
 import Home from './components/Home'
 import NewsInput from './components/NewsInput'
+import SignIn from './components/SignIn'
 import './App.css';
 
 class App extends Component {
@@ -13,6 +15,9 @@ class App extends Component {
     user: {},
     blogs: [],
     shorts: [],
+    signedIn: false,
+    isAdmin: false,
+    modal:false
   }
   async componentWillMount() {
     try {
@@ -24,6 +29,25 @@ class App extends Component {
       console.log(err)
     }
 
+  }
+  openModal = () => {
+    this.setState({modal: true});
+  }
+  closeModal = ()=> {
+    this.setState({modal: false});
+  }
+
+  signIn = async (email,password)=>{
+    try{
+      const payload = {
+        email,
+        password
+      }
+      const resUser = await axios.post('/auth/sign_in', payload)
+      this.setState({signedIn: true, user: resUser.data, isAdmin: resUser.data.admin})
+    }catch(error){
+      console.log(error)
+    }
   }
   render() {
     const HomePage = () => {
@@ -44,7 +68,7 @@ class App extends Component {
             <li><a href="#">Blog</a></li>
             <li><a href="#">Shorts</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a href="#">SignIn</a></li>
+            <li><a onClick={this.openModal}>SignIn</a></li>
           </NavBar>
         </Header>
         <Page>
@@ -65,6 +89,10 @@ class App extends Component {
             </InsideAside>
           </Aside>
         </Page>
+        <Modal isOpen={this.state.modal}>
+          <SignIn signIn={this.signIn}
+                  closeModal={this.closeModal} />
+        </Modal>
       </div>
     );
   }
