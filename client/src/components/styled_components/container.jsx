@@ -62,6 +62,7 @@ export const CarouselContainer = styled.div`
     position: relative;
     overflow: hidden;
     font-family: 'Lora', serif
+    z-index: 1;
 
     h1{
         color: #F2545B;

@@ -1,13 +1,18 @@
 class Api::WipsController < ApplicationController
+    before_action :authenticate_user!
     def index
         @wips = Wip.all
         render json: @wips
     end
 
     def create
-        @wip = Wip.create(wip_params)
+        @user = current_user
+        @wip = @user.wips.build(wip_params)
 
-        render json: @wip
+        if @user.save
+            render json: @wip, status: :created, location: @wip
+        else
+            render json: @wip.errors, status: :unprocessable_entity
     end
 
     def show
@@ -17,8 +22,12 @@ class Api::WipsController < ApplicationController
 
     def update
         @wip = Wip.find(params[:id])
-        @wip.update!(wip_params)
-        render json: @wip
+
+        if @wip.update!(wip_params)
+            render json: @wip
+        else
+            render json: @wip.errors, status: :unprocessable_entity
+        end
     end
 
     def destroy

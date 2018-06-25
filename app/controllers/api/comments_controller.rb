@@ -1,13 +1,19 @@
 class Api::CommentsController < ApplicationController
+    before_action :authenticate_user!
     def index
         @comments = Comment.all
         render json: @comments
     end
 
     def create
-        @comment = Comment.create(comment_params)
+        @user = current_user
+        @comment = @user.comments.build(comment_params)
 
-        render json: @comment
+        if @user.save
+            render json: @comment, status: :created, location: @comment
+        else
+            render json: @comment.errors, status: :unprocessable_entity
+        end
     end
 
     def show
@@ -17,8 +23,12 @@ class Api::CommentsController < ApplicationController
 
     def update
         @comment = Comment.find(params[:id])
-        @comment.update!(comment_params)
-        render json: @comment
+        
+        if @comment.update!(comment_params)
+            render json: @comment
+        else
+            render json: @comment.errors, status: :unprocessable_entity
+        end   
     end
 
     def destroy

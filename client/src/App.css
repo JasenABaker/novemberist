@@ -26,3 +26,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.modal {
+  height: 60vh;
+  width: 50vw;
+  z-index: 300;
+  position: absolute;
+}

@@ -1,13 +1,19 @@
 class Api::BlogsController < ApplicationController
+    before_action :authenticate_user!
     def index
         @blogs = Blog.all
         render json: @blogs
     end
 
     def create
-        @blog = Blog.create(blog_params)
+        @user = current_user
+        @blog = @user.blogs.build(blog_params)
 
-        render json: @blog
+        if @user.save
+            render json: @blog, status: :created, location: @blog
+        else
+            render json: @blog.errors, status: :unprocessable_entity
+        end
     end
 
     def show
@@ -17,8 +23,12 @@ class Api::BlogsController < ApplicationController
 
     def update
         @blog = Blog.find(params[:id])
-        @blog.update!(blog_params)
-        render json: @blog
+        
+        if @blog.update!(blog_params)
+            render json: @blog
+        else 
+            render json: @blog.errors, status: :unprocessable_entity
+        end
     end
 
     def destroy

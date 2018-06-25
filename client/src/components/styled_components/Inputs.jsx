@@ -17,3 +17,15 @@ padding: 16px;
 width: 90%;
 
 `
+
+export const SignInUpForm = styled.form`
+    height: 60vh;
+    width: 30vw;
+    z-index: 200;
+    background-color: #011627;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+`

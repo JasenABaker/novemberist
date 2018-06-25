@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {SignInUpForm, NewsInputStyle} from './styled_components/Inputs'
 
 
 
@@ -14,6 +15,7 @@ class SignIn extends Component {
             this.state.email,
             this.state.password
         )
+        console.log(`signed in with ${this.state.email} and ${this.state.password}`)
         this.props.closeModal()
     }
     handleChange = (event) =>{
@@ -25,19 +27,20 @@ class SignIn extends Component {
     render(){
         return(
             <div>
-                <form>
+                <SignInUpForm>
+                    <h2>Sign In</h2>
                     <div>
                         <label htmlFor="email">Email</label>
-                        <input type="text" name="email" onChange={this.handleChange} value={this.state.email}/>
+                        <NewsInputStyle type="text" name="email" onChange={this.handleChange} value={this.state.email}/>
                     </div>
                     <div>
                         <label htmlFor="password">password</label>
-                        <input type="text" name="password" onChange={this.handleChange} value={this.state.password}/>
+                        <NewsInputStyle type="text" name="password" onChange={this.handleChange} value={this.state.password}/>
                     </div>
                     <div>
                         <button onClick={this.signIn}>SignIn</button>
                     </div>
-                </form>
+                </SignInUpForm>
             </div>
         )
     }

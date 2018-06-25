@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import axios from 'axios'
 import Modal from 'react-modal'
+import Dialog from 'react-dialog'
 import { Header, TitleDiv, NavBar } from './components/styled_components/header'
 import { Page, Aside, AsideImg, InsideAside } from './components/styled_components/container'
 import Image from './components/styled_components/images/me.jpg'
@@ -68,7 +69,9 @@ class App extends Component {
             <li><a href="#">Blog</a></li>
             <li><a href="#">Shorts</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a onClick={this.openModal}>SignIn</a></li>
+            <li>{this.state.signedIn ?
+            <a onClick={this.openModal}>SignOut</a> :
+            <a onClick={this.openModal}>SignIn</a>}</li>
           </NavBar>
         </Header>
         <Page>
@@ -89,10 +92,14 @@ class App extends Component {
             </InsideAside>
           </Aside>
         </Page>
-        <Modal isOpen={this.state.modal}>
+        {this.state.modal &&
+        <Dialog modal="true"
+        heigth="500"
+        width="300">
           <SignIn signIn={this.signIn}
                   closeModal={this.closeModal} />
-        </Modal>
+        </Dialog>
+        }
       </div>
     );
   }

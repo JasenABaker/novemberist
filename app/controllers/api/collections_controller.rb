@@ -1,13 +1,19 @@
 class Api::CollectionsController < ApplicationController
+    before_action :authenticate_user!
     def index
         @collections = Collection.all
         render json: @collections
     end
 
     def create
-        @collection = Collection.create(Collection_params)
+        @user = current_user
+        @collection = @user.collections.build(Collection_params)
 
-        render json: @collection
+        if @user.save 
+            render json: @collection, status: :created, location: @collection
+        else
+            render json: @collection.errors, status: :unprocessable_entity
+        end
     end
 
     def show
@@ -17,8 +23,12 @@ class Api::CollectionsController < ApplicationController
 
     def update
         @collection = Collection.find(params[:id])
-        @collection.update!(collection_params)
-        render json: @collection
+        
+        if @collection.update!(collection_params)
+            render json: @collection
+        else
+            render json: @collection.errors, status: :unprocessable_entity
+        end
     end
 
     def destroy
