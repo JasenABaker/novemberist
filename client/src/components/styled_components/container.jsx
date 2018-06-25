@@ -166,3 +166,10 @@ export const TitleCard = styled.div`
     display: flex;
     align-items: center;
 `
+export const NewsInputCon = styled.div`
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`

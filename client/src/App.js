@@ -5,6 +5,7 @@ import { Header, TitleDiv, NavBar } from './components/styled_components/header'
 import { Page, Aside, AsideImg, InsideAside } from './components/styled_components/container'
 import Image from './components/styled_components/images/me.jpg'
 import Home from './components/Home'
+import NewsInput from './components/NewsInput'
 import './App.css';
 
 class App extends Component {
@@ -60,6 +61,7 @@ class App extends Component {
               </AsideImg>
               <p><a href="#">The Novemberist</a>, Jasen Baker,(<a href="https://twitter.com/RiseNovemberist">@RiseNovemberist</a>) is writer living in Sugar Hill, GA.<a href="#"> Read More...</a></p>
               <h4>Subscribe to my newsletter</h4>
+              <NewsInput/>
             </InsideAside>
           </Aside>
         </Page>
