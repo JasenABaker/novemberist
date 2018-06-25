@@ -16,7 +16,7 @@ export const ReadBtn = styled.a`
     cursor: pointer;
 
     :hover{
-        
+        background: #2F404E;
     }
 
 `

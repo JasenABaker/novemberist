@@ -143,8 +143,11 @@ export const BlogCon = styled.div`
     height: 100%;
     border-top: 1px solid grey;
     h1{
+        font-family: 'Lora', serif;
         margin: 0;
         color: #F2545B;
+        text-transform: uppercase;
+        font-size: 2em;
     }
     h4{
         margin: 0;
