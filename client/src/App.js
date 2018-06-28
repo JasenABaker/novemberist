@@ -65,7 +65,7 @@ class App extends Component {
       }
       const resUser = await axios.post('/api/auth/sign_in', payload)
       saveAuthTokens(resUser.headers)
-      if(resUser.data.admin){
+      if(resUser.data.data.admin){
         console.log(resUser.data)
       this.setState({signedIn: true, user: resUser.data, isAdmin: true})
       }else{
