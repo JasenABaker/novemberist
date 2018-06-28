@@ -1,8 +1,12 @@
 class Api::CommentsController < ApplicationController
-    before_action :authenticate_user!
+   
     def index
         @comments = Comment.all
         render json: @comments
+    end
+    def show
+        @comment = Comment.find(params[:id])
+        render json: @comment
     end
 
     def create
@@ -16,10 +20,7 @@ class Api::CommentsController < ApplicationController
         end
     end
 
-    def show
-        @comment = Comment.find(params[:id])
-        render json: @comment
-    end
+    
 
     def update
         @comment = Comment.find(params[:id])

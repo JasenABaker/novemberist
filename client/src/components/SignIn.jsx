@@ -15,7 +15,6 @@ class SignIn extends Component {
             this.state.email,
             this.state.password
         )
-        console.log(`signed in with ${this.state.email} and ${this.state.password}`)
         this.props.closeModal()
     }
     handleChange = (event) =>{

@@ -1,9 +1,14 @@
 class Api::ShortsController < ApplicationController
-    before_action :authenticate_user!
+    
     def index
         @shorts = Short.all
         render json: @shorts
     end
+    def show
+        @short = Short.find(params[:id])
+        render json: @short
+    end
+
 
     def create
         @user = current_user
@@ -16,10 +21,7 @@ class Api::ShortsController < ApplicationController
         end
     end
 
-    def show
-        @short = Short.find(params[:id])
-        render json: @short
-    end
+    
 
     def update
         @short = Short.find(params[:id])

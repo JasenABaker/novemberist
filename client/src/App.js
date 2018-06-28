@@ -10,6 +10,7 @@ import Home from './components/Home'
 import NewsInput from './components/NewsInput'
 import SignIn from './components/SignIn'
 import './App.css';
+import {saveAuthTokens, setAxiosDefaults, userIsLoggedIn, clearAuthTokens} from './util/SessionHeaderUtil'
 
 class App extends Component {
   state = {
@@ -22,14 +23,32 @@ class App extends Component {
   }
   async componentWillMount() {
     try {
+    const signedIn = userIsLoggedIn()
+    if (signedIn) {
+      setAxiosDefaults()
+    }
     const resBlog = await axios.get('/api/blogs')
     const resShorts = await axios.get('/api/shorts')
-    this.setState({blogs: resBlog.data, shorts: resShorts.data})
+    this.setState({blogs: resBlog.data, shorts: resShorts.data, signedIn})
+
     }
     catch(err){
       console.log(err)
     }
 
+  }
+
+  signOut = async(event)=>{
+    try{
+      event.preventDefault()
+
+      await axios.delete('/api/auth/sign_out')
+      clearAuthTokens()
+
+      this.setState({signedIn: false})
+    }catch(error){
+      console.log(error)
+    }
   }
   openModal = () => {
     this.setState({modal: true});
@@ -44,8 +63,15 @@ class App extends Component {
         email,
         password
       }
-      const resUser = await axios.post('/auth/sign_in', payload)
-      this.setState({signedIn: true, user: resUser.data, isAdmin: resUser.data.admin})
+      const resUser = await axios.post('/api/auth/sign_in', payload)
+      saveAuthTokens(resUser.headers)
+      if(resUser.data.admin){
+        console.log(resUser.data)
+      this.setState({signedIn: true, user: resUser.data, isAdmin: true})
+      }else{
+      console.log(resUser.data)
+      this.setState({signedIn: true, user: resUser.data, isAdmin: false})
+      }
     }catch(error){
       console.log(error)
     }
@@ -58,6 +84,7 @@ class App extends Component {
     }
     return (
       <div>
+        {console.log('is admin?', this.state.isAdmin)}
         <Header>
           <TitleDiv>
             <h2>The</h2>
@@ -70,7 +97,7 @@ class App extends Component {
             <li><a href="#">Shorts</a></li>
             <li><a href="#">Blog</a></li>
             <li>{this.state.signedIn ?
-            <a onClick={this.openModal}>SignOut</a> :
+            <a onClick={this.signOut}>SignOut</a> :
             <a onClick={this.openModal}>SignIn</a>}</li>
           </NavBar>
         </Header>
@@ -93,9 +120,9 @@ class App extends Component {
           </Aside>
         </Page>
         {this.state.modal &&
-        <Dialog modal="true"
-        heigth="500"
-        width="300">
+        <Dialog modal={true}
+        heigth= {1500}
+        width={390}>
           <SignIn signIn={this.signIn}
                   closeModal={this.closeModal} />
         </Dialog>

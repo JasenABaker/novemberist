@@ -12,15 +12,16 @@ Collection.destroy_all
 Wip.destroy_all
 
 
-admin = User.create!({
+admin = User.new({
     email: "JasenABaker@gmail.com",
     nickname: "Admin",
-    password: "1873jbbb",
-    encrypted_password: "1873jbbb",
+    password: "1234567",
+    password_confirmation: "1234567",
     name: "Jasen Baker",
     admin: true,
     image: "https://i.imgur.com/ZNTTFCp.jpg",
 })
+admin.save!
 
 first = admin.blogs.create!({
     title: "First Blog",

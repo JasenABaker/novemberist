@@ -78,7 +78,6 @@ class Home extends Component {
                             const collect = this.state.collections.find((collection)=>{
                                 return collection.id === short.collection_id
                             })
-                            console.log(collect)
                             return (
                                 <Slide right>
                                     <CarouselContent>

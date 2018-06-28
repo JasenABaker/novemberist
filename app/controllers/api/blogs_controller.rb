@@ -1,8 +1,13 @@
 class Api::BlogsController < ApplicationController
-    before_action :authenticate_user!
+    
     def index
         @blogs = Blog.all
         render json: @blogs
+    end
+    
+    def show
+        @blog = Blog.find(params[:id])
+        render json: @blog
     end
 
     def create
@@ -16,10 +21,7 @@ class Api::BlogsController < ApplicationController
         end
     end
 
-    def show
-        @blog = Blog.find(params[:id])
-        render json: @blog
-    end
+   
 
     def update
         @blog = Blog.find(params[:id])
