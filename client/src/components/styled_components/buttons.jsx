@@ -39,3 +39,20 @@ border-radius: 2px;
 }
 
 `
+export const SignSubmitBtn = styled.button`
+height: 60px;
+width: 100px;
+color: #EAF4F4;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 14px;
+text-transform: uppercase;
+border: none;
+border-radius: 2px;
+background-color: #F2545B;
+
+    :hover{
+        background-color: #F7A1A5;
+    }
+`

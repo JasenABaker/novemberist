@@ -9,6 +9,7 @@ import Image from './components/styled_components/images/me.jpg'
 import Home from './components/Home'
 import NewsInput from './components/NewsInput'
 import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
 import './App.css';
 import {saveAuthTokens, setAxiosDefaults, userIsLoggedIn, clearAuthTokens} from './util/SessionHeaderUtil'
 
@@ -19,7 +20,8 @@ class App extends Component {
     shorts: [],
     signedIn: false,
     isAdmin: false,
-    modal:false
+    modal:false,
+    modal2: false
   }
   async componentWillMount() {
     try {
@@ -50,6 +52,12 @@ class App extends Component {
       console.log(error)
     }
   }
+  openModal2 = () =>{
+    this.setState({modal2: true})
+  }
+  closeModal2 =() =>{
+    this.setState({modal2: false})
+  }
   openModal = () => {
     this.setState({modal: true});
   }
@@ -67,11 +75,28 @@ class App extends Component {
       saveAuthTokens(resUser.headers)
       if(resUser.data.data.admin){
         console.log(resUser.data)
-      this.setState({signedIn: true, user: resUser.data, isAdmin: true})
+      this.setState({signedIn: true, user: resUser.data.data, isAdmin: true})
       }else{
       console.log(resUser.data)
-      this.setState({signedIn: true, user: resUser.data, isAdmin: false})
+      this.setState({signedIn: true, user: resUser.data.data, isAdmin: false})
       }
+    }catch(error){
+      console.log(error)
+    }
+  }
+  signUp = async (email, password, password_comfirmation, name, nickname, image) =>{
+    try{
+      const payload = {
+        email: email,
+        password: password,
+        password_comfirmation: password_comfirmation,
+        name: name,
+        nickname: nickname,
+        image: image
+      }
+      const res = await axios.post('/api/auth', payload)
+      saveAuthTokens(res.headers)
+      this.setState({signedIn: true, user: res.data.data})
     }catch(error){
       console.log(error)
     }
@@ -121,12 +146,18 @@ class App extends Component {
         </Page>
         {this.state.modal &&
         <Dialog modal={true}
-        heigth= {1500}
-        width={390}>
+        width={392}>
           <SignIn signIn={this.signIn}
-                  closeModal={this.closeModal} />
+                  closeModal={this.closeModal} 
+                  openModal2={this.openModal2}/>
         </Dialog>
         }
+        {this.state.modal2 &&
+        <Dialog modal={true}
+          width={392}>
+          <SignUp signUp={this.signUp}
+                closeModal={this.closeModal2}/>
+            </Dialog>}
       </div>
     );
   }
