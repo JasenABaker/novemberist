@@ -39,7 +39,7 @@ class SignIn extends Component {
                     </InputDiv>
                     <InputDiv>
                         <label htmlFor="password">password</label>
-                        <NewsInputStyle type="text" name="password" onChange={this.handleChange} value={this.state.password}/>
+                        <NewsInputStyle type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
                     </InputDiv>
                     <div>
                         <SignSubmitBtn onClick={this.signIn}>Sign In</SignSubmitBtn>

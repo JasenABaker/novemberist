@@ -17,7 +17,8 @@ class SignUp extends Component {
 
     signUp = (event) =>{
         event.preventDefault()
-        if(this.state.password === this.state.password_confirmation){
+    
+        if((this.state.password === this.state.password_confirmation)&& (this.state.password.length >= 6)) {
         this.props.signUp(
             this.state.email,
             this.state.password,
@@ -27,7 +28,10 @@ class SignUp extends Component {
             this.state.image
         )
         this.props.closeModal()
-    } else {
+    } else if (this.state.password.length < 6){
+        alert('Password is too short. Must have atleast 6 characters!')
+    }
+    else if(!(this.state.password === this.state.password_confirmation)){
         alert('Passwords much match!')
     }
     }
@@ -71,11 +75,11 @@ class SignUp extends Component {
                     </InputDiv>
                     <InputDiv>
                         <label htmlFor="password">password</label>
-                        <NewsInputStyle type="text" name="password" onChange={this.handleChange} value={this.state.password}/>
+                        <NewsInputStyle type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
                     </InputDiv>
                     <InputDiv>
                         <label htmlFor="password_confirmation">Comfirm Password</label>
-                        <NewsInputStyle type="text" name="password_confirmation" onChange={this.handleChange} value={this.state.password_confirmation}/>
+                        <NewsInputStyle type="password" name="password_confirmation" onChange={this.handleChange} value={this.state.password_confirmation}/>
                     </InputDiv>
                     <div>
                         <SignSubmitBtn onClick={this.signUp}>Sign In</SignSubmitBtn>

@@ -11,7 +11,7 @@ import NewsInput from './components/NewsInput'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import './App.css';
-import {saveAuthTokens, setAxiosDefaults, userIsLoggedIn, clearAuthTokens} from './util/SessionHeaderUtil'
+import { saveAuthTokens, setAxiosDefaults, userIsLoggedIn, clearAuthTokens } from './util/SessionHeaderUtil'
 
 class App extends Component {
   state = {
@@ -20,96 +20,98 @@ class App extends Component {
     shorts: [],
     signedIn: false,
     isAdmin: false,
-    modal:false,
+    modal: false,
     modal2: false
   }
   async componentWillMount() {
     try {
-    const signedIn = userIsLoggedIn()
-    if (signedIn) {
-      setAxiosDefaults()
-    }
-    const resBlog = await axios.get('/api/blogs')
-    const resShorts = await axios.get('/api/shorts')
-    this.setState({blogs: resBlog.data, shorts: resShorts.data, signedIn})
+      const signedIn = userIsLoggedIn()
+      if (signedIn) {
+        setAxiosDefaults()
+      }
+      const resBlog = await axios.get('/api/blogs')
+      const resShorts = await axios.get('/api/shorts')
+      this.setState({ blogs: resBlog.data, shorts: resShorts.data, signedIn })
 
     }
-    catch(err){
+    catch (err) {
       console.log(err)
     }
 
   }
 
-  signOut = async(event)=>{
-    try{
+  signOut = async (event) => {
+    try {
       event.preventDefault()
 
       await axios.delete('/api/auth/sign_out')
       clearAuthTokens()
 
-      this.setState({signedIn: false})
-    }catch(error){
+      this.setState({ signedIn: false })
+    } catch (error) {
       console.log(error)
     }
   }
-  openModal2 = () =>{
-    this.setState({modal2: true})
+  openModal2 = () => {
+    this.setState({ modal2: true })
   }
-  closeModal2 =() =>{
-    this.setState({modal2: false})
+  closeModal2 = () => {
+    this.setState({ modal2: false })
   }
   openModal = () => {
-    this.setState({modal: true});
+    this.setState({ modal: true });
   }
-  closeModal = ()=> {
-    this.setState({modal: false});
+  closeModal = () => {
+    this.setState({ modal: false });
   }
 
-  signIn = async (email,password)=>{
-    try{
+  signIn = async (email, password) => {
+    try {
       const payload = {
         email,
         password
       }
       const resUser = await axios.post('/api/auth/sign_in', payload)
       saveAuthTokens(resUser.headers)
-      if(resUser.data.data.admin){
+      if (resUser.data.data.admin) {
         console.log(resUser.data)
-      this.setState({signedIn: true, user: resUser.data.data, isAdmin: true})
-      }else{
-      console.log(resUser.data)
-      this.setState({signedIn: true, user: resUser.data.data, isAdmin: false})
+        this.setState({ signedIn: true, user: resUser.data.data, isAdmin: true })
+      } else {
+        console.log(resUser.data)
+        this.setState({ signedIn: true, user: resUser.data.data, isAdmin: false })
       }
-    }catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
-  signUp = async (email, password, password_comfirmation, name, nickname, image) =>{
-    try{
-      const payload = {
+  signUp = async (email, password, password_comfirmation, name, nickname, image) => {
+    try {
+  
+      const res = await axios.post('/api/auth', {
+        user: {
         email: email,
         password: password,
-        password_comfirmation: password_comfirmation,
+        password_confirmation: password_comfirmation,
         name: name,
         nickname: nickname,
         image: image
-      }
-      const res = await axios.post('/api/auth', payload)
-      saveAuthTokens(res.headers)
-      this.setState({signedIn: true, user: res.data.data})
-    }catch(error){
+        }
+      })
+      this.signIn(email, password)
+      alert(`Hey ${name}! Thanks for joining me! You can now login using ${email}`)
+    } catch (error) {
       console.log(error)
+      alert('Failed to create new user!')
     }
   }
   render() {
     const HomePage = () => {
-      return(
+      return (
         <Home shorts={this.state.shorts} blogs={this.state.blogs} />
       )
     }
     return (
       <div>
-        {console.log('is admin?', this.state.isAdmin)}
         <Header>
           <TitleDiv>
             <h2>The</h2>
@@ -122,8 +124,8 @@ class App extends Component {
             <li><a href="#">Shorts</a></li>
             <li><a href="#">Blog</a></li>
             <li>{this.state.signedIn ?
-            <a onClick={this.signOut}>SignOut</a> :
-            <a onClick={this.openModal}>SignIn</a>}</li>
+              <a onClick={this.signOut}>SignOut</a> :
+              <a onClick={this.openModal}>SignIn</a>}</li>
           </NavBar>
         </Header>
         <Page>
@@ -136,28 +138,28 @@ class App extends Component {
             <InsideAside>
               <h4>About the Author</h4>
               <AsideImg>
-                <img src={Image} alt="The Novemberist"/>
+                <img src={Image} alt="The Novemberist" />
               </AsideImg>
               <p><a href="#">The Novemberist</a>, Jasen Baker,(<a href="https://twitter.com/RiseNovemberist">@RiseNovemberist</a>) is writer living in Sugar Hill, GA.<a href="#"> Read More...</a></p>
               <h4>Subscribe to my newsletter</h4>
-              <NewsInput/>
+              <NewsInput />
             </InsideAside>
           </Aside>
         </Page>
         {this.state.modal &&
-        <Dialog modal={true}
-        width={392}>
-          <SignIn signIn={this.signIn}
-                  closeModal={this.closeModal} 
-                  openModal2={this.openModal2}/>
-        </Dialog>
+          <Dialog modal={true}
+            width={392}>
+            <SignIn signIn={this.signIn}
+              closeModal={this.closeModal}
+              openModal2={this.openModal2} />
+          </Dialog>
         }
         {this.state.modal2 &&
-        <Dialog modal={true}
-          width={392}>
-          <SignUp signUp={this.signUp}
-                closeModal={this.closeModal2}/>
-            </Dialog>}
+          <Dialog modal={true}
+            width={392}>
+            <SignUp signUp={this.signUp}
+              closeModal={this.closeModal2} />
+          </Dialog>}
       </div>
     );
   }
