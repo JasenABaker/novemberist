@@ -23,6 +23,7 @@ export const Aside = styled.div`
     flex-direction: column;
     align-items: center;
     font-family: 'Lora', serif;
+    
 
     a{
         text-decoration: none;
@@ -32,13 +33,17 @@ export const Aside = styled.div`
 export const InsideAside = styled.div`
     height: 100%;
     width: 80%;
+    display: flex;
+    flex-direction: column;
+
 
     h4{
         font-size: 14px;
         text-transform: uppercase;
+        align-self: center;
     }
     p{
-        font-size: 16px;
+        font-size: 15px;
     }
 `
 export const AsideImg = styled.div`
@@ -47,6 +52,7 @@ export const AsideImg = styled.div`
     border-radius: 100px;
     background-color: gray;
     overflow: hidden;
+    align-self: center;
     
     img{
         height: 100%;
@@ -159,7 +165,6 @@ export const BlogCon = styled.div`
     padding-bottom: 5px;
     height: 25%;
     overflow: hidden;
-    text-overflow: ellipsis;
     }
 `
 export const TitleCard = styled.div`
@@ -172,5 +177,5 @@ export const NewsInputCon = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 `

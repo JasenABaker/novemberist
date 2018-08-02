@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import TextTruncate from 'react-text-truncate'
 import { MainPage, CarouselContainer, 
         SecHomeCon, 
         BlogCon, 
@@ -101,7 +102,10 @@ class Home extends Component {
                                 <BlogCon>
                                     <h1>{blog.title}</h1>
                                     <h4>{date.getDate()}/{date.getMonth()}/{date.getFullYear()}</h4>
-                                    <p>{blog.content}</p>
+                                    <TextTruncate
+                                        line={4}
+                                        truncateText="…"
+                                        text={blog.content}/>
                                     <ReadBtn>Read More</ReadBtn>
 
                                 </BlogCon>
