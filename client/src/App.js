@@ -7,6 +7,7 @@ import { Header, TitleDiv, NavBar } from './components/styled_components/header'
 import { Page, Aside, AsideImg, InsideAside } from './components/styled_components/container'
 import Image from './components/styled_components/images/me.jpg'
 import Home from './components/Home'
+import About from './components/About'
 import NewsInput from './components/NewsInput'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
@@ -113,12 +114,14 @@ class App extends Component {
     return (
       <div>
         <Header>
+        <a href="/">
           <TitleDiv>
             <h2>The</h2>
             <h1>Novemberist</h1>
           </TitleDiv>
+          </a>
           <NavBar>
-            <li><a href="#">About</a></li>
+            <li><a href="/about">About</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Shorts</a></li>
@@ -133,6 +136,7 @@ class App extends Component {
             <div>
             <Switch>
               <Route exact path='/' render={HomePage} />
+              <Route exact path='/about' component={About}/>
             </Switch>
             </div>
           </Router>

@@ -10,6 +10,11 @@ export const Header = styled.div`
     color: #EAF4F4;
     background-color: #011627;
     font-family: 'Oleo Script', cursive;
+
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
 `
 
 export const TitleDiv = styled.div`
