@@ -130,9 +130,11 @@ class App extends Component {
         </Header>
         <Page>
           <Router>
+            <div>
             <Switch>
-              <Route exact path='/index' render={HomePage} />
+              <Route exact path='/' render={HomePage} />
             </Switch>
+            </div>
           </Router>
           <Aside>
             <InsideAside>
