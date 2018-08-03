@@ -87,7 +87,10 @@ class Home extends Component {
                                         <h1>{short.title}</h1>
                                         <h4>{collect.title}</h4>
                                         </TitleCard>
-                                        <p>{short.content}</p>
+                                        <TextTruncate
+                                        line={4}
+                                        truncateText="…"
+                                        text={short.content}/>
                                         <ReadBtn>Read More</ReadBtn>
                                     </CarouselContent>
                                 </Slide>

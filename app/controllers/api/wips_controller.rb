@@ -17,6 +17,7 @@ class Api::WipsController < ApplicationController
             render json: @wip, status: :created, location: @wip
         else
             render json: @wip.errors, status: :unprocessable_entity
+        end
     end
 
     
