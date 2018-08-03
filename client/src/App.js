@@ -131,7 +131,7 @@ class App extends Component {
         <Page>
           <Router>
             <Switch>
-              <Route exact path='/' render={HomePage} />
+              <Route exact path='/index' render={HomePage} />
             </Switch>
           </Router>
           <Aside>
