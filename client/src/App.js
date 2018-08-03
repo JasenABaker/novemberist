@@ -142,7 +142,7 @@ class App extends Component {
               <AsideImg>
                 <img src={Image} alt="The Novemberist" />
               </AsideImg>
-              <p><a href="#">The Novemberist</a>, Jasen Baker,(<a href="https://twitter.com/RiseNovemberist">@RiseNovemberist</a>) is writer living in Sugar Hill, GA.<a href="#"> Read More...</a></p>
+              <p><a href="#">The Novemberist</a>, Jasen Baker!(<a href="https://twitter.com/RiseNovemberist">@RiseNovemberist</a>) is writer living in Sugar Hill, GA.<a href="#"> Read More...</a></p>
               <h4>Subscribe to my newsletter</h4>
               <NewsInput />
             </InsideAside>
