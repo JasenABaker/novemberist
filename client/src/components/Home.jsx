@@ -87,7 +87,7 @@ class Home extends Component {
                                         <h1>{short.title}</h1>
                                         <h4>{collect.title}</h4>
                                         </TitleCard>
-                                        <TextTruncate
+                                        <TextTruncate className="text"
                                         line={4}
                                         truncateText="…"
                                         text={short.content}/>
