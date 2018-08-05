@@ -179,3 +179,36 @@ export const NewsInputCon = styled.div`
     flex-direction: column;
     justify-content: space-around;
 `
+
+export const Heading = styled.div`
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #F2545B;
+    margin-bottom: 10px;
+    font-family: 'Oswald', sans-serif;
+
+    h1 {
+        font-size: 4em;
+        margin: 0 0 0 30px;
+    }
+    h2 {
+        font-size: 3em;
+        margin-top: 0px;
+        margin-left: 50px;
+    }
+`
+
+export const ImgCon = styled.div`
+        height: 45vh;
+        width: 60vw;
+        overflow: hidden;
+
+        img {
+            height: auto;
+            width: 100%;
+            transform: translateY(-40px);
+            
+        }
+`
