@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {SignInUpForm, NewsInputStyle, InputDiv} from './styled_components/Inputs'
+import {SignInUpForm, NewsInputStyle, InputDiv, TopDiv, CloseBtn} from './styled_components/Inputs'
 import {SignSubmitBtn} from './styled_components/buttons'
 
 
@@ -32,7 +32,10 @@ class SignIn extends Component {
         return(
             <div>
                 <SignInUpForm>
+                    <TopDiv>
                     <h2>Sign In</h2>
+                    <CloseBtn onClick={this.props.closeModal}>X</CloseBtn>
+                    </TopDiv>
                     <InputDiv>
                         <label htmlFor="email">Email</label>
                         <NewsInputStyle type="text" name="email" onChange={this.handleChange} value={this.state.email}/>

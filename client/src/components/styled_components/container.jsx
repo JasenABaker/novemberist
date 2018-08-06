@@ -246,3 +246,12 @@ export const SideBySide = styled.div`
         align-items: center;
         
 `
+
+export const IconCon = styled.div`
+        display: flex;
+        color: #F2545B;
+
+        h3 {
+            font-size: 1.5em;
+        }
+`

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import axios from 'axios'
 import Modal from 'react-modal'
 import Dialog from 'react-dialog'
+import Scroll from 'react-scroll'
+import {Element} from 'react-scroll'
 import { Header, TitleDiv, NavBar } from './components/styled_components/header'
 import { Page, Aside, AsideImg, InsideAside } from './components/styled_components/container'
 import Image from './components/styled_components/images/me.jpg'
@@ -14,6 +16,10 @@ import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import './App.css';
 import { saveAuthTokens, setAxiosDefaults, userIsLoggedIn, clearAuthTokens } from './util/SessionHeaderUtil'
+import inherits from '../node_modules/babel-runtime/helpers/inherits';
+
+
+let ScrollLink = Scroll.Link
 
 class App extends Component {
   state = {
@@ -123,7 +129,16 @@ class App extends Component {
           </a>
           <NavBar>
             <li><a href="/about">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><ScrollLink
+                    activeClass= "Active"
+                    to="Contact"
+                    spy={true}
+                    smooth={true}
+                    hashSpy={true}
+                    offset={10}
+                    duration={1000}
+                    delay={30}
+                    isDynamic={true}>Contact</ScrollLink></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Shorts</a></li>
             <li><a href="#">Blog</a></li>
@@ -154,10 +169,12 @@ class App extends Component {
           </Aside>
           
         </Page>
+        <Element name="Contact">
         <Contact />
+        </Element>
         {this.state.modal &&
           <Dialog modal={true}
-            width={392}>
+            width={inherits}>
             <SignIn signIn={this.signIn}
               closeModal={this.closeModal}
               openModal2={this.openModal2} />
@@ -165,7 +182,7 @@ class App extends Component {
         }
         {this.state.modal2 &&
           <Dialog modal={true}
-            width={392}>
+            width={inherits}>
             <SignUp signUp={this.signUp}
               closeModal={this.closeModal2} />
           </Dialog>}
