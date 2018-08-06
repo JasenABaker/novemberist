@@ -208,7 +208,7 @@ export const ImgCon = styled.div`
         img {
             height: auto;
             width: 100%;
-            transform: translateY(-40px);
+            transform: translateY(-50px);
             
         }
 `
