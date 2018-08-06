@@ -7,6 +7,7 @@ import { Header, TitleDiv, NavBar } from './components/styled_components/header'
 import { Page, Aside, AsideImg, InsideAside } from './components/styled_components/container'
 import Image from './components/styled_components/images/me.jpg'
 import Home from './components/Home'
+import Contact from './components/Contact'
 import About from './components/About'
 import NewsInput from './components/NewsInput'
 import SignIn from './components/SignIn'
@@ -151,7 +152,9 @@ class App extends Component {
               <NewsInput />
             </InsideAside>
           </Aside>
+          
         </Page>
+        <Contact />
         {this.state.modal &&
           <Dialog modal={true}
             width={392}>

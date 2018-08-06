@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-
-
+import Notebook from './images/notebook.jpg'
 
 
 export const Page = styled.div`
@@ -143,12 +142,13 @@ export const Dots = styled.span`
 `
 export const SecHomeCon = styled.div`
     margin-top: 30px;
-    height: 30vh;
+    min-height: 30vh;
     width: 60vw;
 `
 export const BlogCon = styled.div`
     height: 100%;
     border-top: 1px solid grey;
+    margin-bottom: 10px;
     h1{
         font-family: 'Lora', serif;
         margin: 0;
@@ -211,4 +211,38 @@ export const ImgCon = styled.div`
             transform: translateY(-50px);
             
         }
+`
+
+export const ContactCon = styled.div`
+        height: 65vh;
+        width: 100vw;
+        margin: 20px 0;
+        background: linear-gradient(0deg, rgba(1,22,39,0.6), rgba(1,22,39,0.6)), url(${Notebook}) center no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        h1 {
+            color: white;
+            font-size: 3em;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+
+        }
+`
+export const SideBySideCon = styled.div`
+        height: 80%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+`
+export const SideBySide = styled.div`
+        height: 45vh;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        
 `
