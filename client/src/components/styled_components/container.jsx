@@ -247,11 +247,25 @@ export const SideBySide = styled.div`
         
 `
 
-export const IconCon = styled.div`
+export const InfoCon = styled.div`
+        margin-left: 40px;
         display: flex;
+        width: 100%;
+        height: 70%;
         color: #F2545B;
 
         h3 {
             font-size: 1.5em;
         }
+`
+
+export const IconCon = styled.div`
+        height: 100%;
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+`
+export const TextCon = IconCon.extend`
+        width: 80%;
 `
