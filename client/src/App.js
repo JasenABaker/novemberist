@@ -139,7 +139,7 @@ class App extends Component {
                     duration={1000}
                     delay={30}
                     isDynamic={true}>Contact</ScrollLink></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="#">Wip</a></li>
             <li><a href="#">Shorts</a></li>
             <li><a href="#">Blog</a></li>
             <li>{this.state.signedIn ?

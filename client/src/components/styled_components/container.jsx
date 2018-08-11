@@ -255,7 +255,8 @@ export const InfoCon = styled.div`
         color: #F2545B;
 
         h3 {
-            font-size: 1.5em;
+            font-size: 1em;
+            margin: 0;
         }
 `
 
@@ -268,4 +269,5 @@ export const IconCon = styled.div`
 `
 export const TextCon = IconCon.extend`
         width: 80%;
+        height: 100%;
 `

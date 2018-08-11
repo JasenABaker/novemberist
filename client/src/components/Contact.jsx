@@ -25,9 +25,9 @@ class Contact extends Component {
             <SideBySide>
             <InfoCon>
             <IconCon>
-                <Icon medium>email</Icon>
-                <Icon medium>phone</Icon>
-                <Icon medium>room</Icon>
+                <Icon small>email</Icon>
+                <Icon small>phone</Icon>
+                <Icon small>room</Icon>
             </IconCon>
             <TextCon>
             <h3>RiseNovemberist@gmail.com</h3>
