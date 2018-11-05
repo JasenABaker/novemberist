@@ -10,33 +10,13 @@ import { MainPage, CarouselContainer,
         Arrow, 
         CarouselContent,
         TitleCard } from './styled_components/container'
-import makeCarousel from 'react-reveal/makeCarousel'
-import Slide from 'react-reveal/Slide'
+import Carousel from 'nuka-carousel'
 import ImageOne from './styled_components/images/image1.jpg'
 import ImageTwo from './styled_components/images/image2.jpg'
 import ImageThree from './styled_components/images/image3.jpg'
 import ImageFour from './styled_components/images/image4.jpg'
 import ImageFive from './styled_components/images/image5.jpg'
 import {ReadBtn} from './styled_components/buttons'
-
-
-const CarouselUI = ({ position, total, handleClick, children }) => (
-    <CarouselContainer>
-        <Children>
-            {children}
-            <Arrow onClick={handleClick} data-position={position - 1}>{'<'}</Arrow>
-            <Arrow right onClick={handleClick} data-position={position + 1}>{'>'}</Arrow>
-        </Children>
-        <Dots>
-            {Array(...Array(total)).map((val, index) =>
-                <Dot key={index} onClick={handleClick} data-position={index}>
-                    {index === position ? '● ' : '○ '}
-                </Dot>
-            )}
-        </Dots>
-    </CarouselContainer>
-)
-const Carousel = makeCarousel(CarouselUI)
 
 
 class Home extends Component {
@@ -69,18 +49,27 @@ class Home extends Component {
     }
 
     render() {
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
         const shorts = this.state.shorts
         const images = [ImageOne,ImageTwo,ImageThree,ImageFour,ImageFive]
         return (
             this.state.isloaded ?
                 <MainPage>
-                    <Carousel defaultWait={7000}>
+                    <Carousel slideWidth={1.0}
+                    autoplay={true}
+                    wrapAround={true}  >
                         {this.state.shorts.map((short, index) => {
                             const collect = this.state.collections.find((collection)=>{
                                 return collection.id === short.collection_id
                             })
                             return (
-                                <Slide right>
+                            
                                     <CarouselContent>
                                         <img src={images[index]} alt="image" />
                                         <TitleCard>
@@ -93,7 +82,7 @@ class Home extends Component {
                                         text={short.content}/>
                                         <ReadBtn>Read More</ReadBtn>
                                     </CarouselContent>
-                                </Slide>
+                             
                             )
                         })}
                     </Carousel>
