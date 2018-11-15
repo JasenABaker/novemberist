@@ -19,21 +19,24 @@ class Contact extends Component {
             <SideBySide>
                 <NewsInputStyle type="text" name="name" placeholder="Name"/>
                 <NewsInputStyle type="text" name="email" placeholder="Email Address"/>
-                <textarea name="message"  cols="30" rows="10" placeholder="give me a message" style={{width:"95%"}}></textarea>
+                <textarea name="message"  cols="30" rows="30" placeholder="give me a message" style={{width:"100%", height: "40%"}}></textarea>
                 <SignSubmitBtn>Submit</SignSubmitBtn>
             </SideBySide>
             <SideBySide>
             <InfoCon>
             <IconCon>
                 <Icon small>email</Icon>
+                <h3>RiseNovemberist@gmail.com</h3>
+                </IconCon>
+                <IconCon>
                 <Icon small>phone</Icon>
-                <Icon small>room</Icon>
-            </IconCon>
-            <TextCon>
-            <h3>RiseNovemberist@gmail.com</h3>
                 <h3>470.635.1438</h3>
+                </IconCon>
+                <IconCon>
+                <Icon small>room</Icon>
                 <h3> Sugar Hill, GA</h3>
-            </TextCon>
+                </IconCon>
+    
             </InfoCon>
             </SideBySide>
             </SideBySideCon>

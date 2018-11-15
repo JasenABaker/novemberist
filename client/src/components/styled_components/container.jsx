@@ -96,11 +96,11 @@ export const CarouselContainer = styled.div`
 `
 export const CarouselContent = styled.div`
     height: 26vh;
-    width: 57vw;
-    padding-left: 20px;
+    width: 100%;
+    padding-left: 100px;
     position: relative;
     overflow: hidden;
-
+    background-color: #747F89;
     img {
         height: auto;
         width: 100%;
@@ -109,37 +109,6 @@ export const CarouselContent = styled.div`
     }
 `
 
-const width = '60vw', height='25vh';
-export const Children  = styled.div`
-  width: ${width};
-  position: relative;
-  height: ${height};
-`
-export const Arrow = styled.div`
-  text-shadow: 1px 1px 1px #fff;
-  z-index: 100;
-  line-height: ${height};
-  text-align: center;
-  position: absolute;
-  top: 0;
-  width: 10%;
-  font-size: 2em;
-  cursor: pointer;
-  user-select: none;
-  ${props => props.right ? css`left: 94%;` : css`left: -4%;`}
-`
-export const Dot = styled.span`
-  font-size: 1.5em;
-  cursor: pointer;
-  text-shadow: 1px 1px 1px #fff;
-  user-select: none;
-`
-export const Dots = styled.span`
-  text-align: center;
-  padding-left: 20px;
-  width: ${width};
-  z-index: 100;
-`
 export const SecHomeCon = styled.div`
     margin-top: 30px;
     min-height: 30vh;
@@ -248,10 +217,13 @@ export const SideBySide = styled.div`
 `
 
 export const InfoCon = styled.div`
+        margin-top: 20px;
         margin-left: 40px;
         display: flex;
-        width: 100%;
-        height: 70%;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 70%;
+        height: 80%;
         color: #F2545B;
 
         h3 {
@@ -261,13 +233,9 @@ export const InfoCon = styled.div`
 `
 
 export const IconCon = styled.div`
-        height: 100%;
-        width: 20%;
+        height: 20%;
+        width: 70%;
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
-`
-export const TextCon = IconCon.extend`
-        width: 80%;
-        height: 100%;
+        align-items: center;
 `

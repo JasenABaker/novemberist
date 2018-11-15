@@ -4,10 +4,6 @@ import TextTruncate from 'react-text-truncate'
 import { MainPage, CarouselContainer, 
         SecHomeCon, 
         BlogCon, 
-        Children, 
-        Dot, 
-        Dots, 
-        Arrow, 
         CarouselContent,
         TitleCard } from './styled_components/container'
 import Carousel from 'nuka-carousel'
@@ -57,13 +53,14 @@ class Home extends Component {
             slidesToScroll: 1
         }
         const shorts = this.state.shorts
-        const images = [ImageOne,ImageTwo,ImageThree,ImageFour,ImageFive]
         return (
             this.state.isloaded ?
                 <MainPage>
+                    <CarouselContainer>
                     <Carousel slideWidth={1.0}
                     autoplay={true}
-                    wrapAround={true}  >
+                    wrapAround={true}
+                    autoplayInterval={5000} >
                         {this.state.shorts.map((short, index) => {
                             const collect = this.state.collections.find((collection)=>{
                                 return collection.id === short.collection_id
@@ -71,22 +68,22 @@ class Home extends Component {
                             return (
                             
                                     <CarouselContent>
-                                        <img src={images[index]} alt="image" />
                                         <TitleCard>
                                         <h1>{short.title}</h1>
                                         <h4>{collect.title}</h4>
                                         </TitleCard>
-                                        <TextTruncate className="text"
+                                        <TextTruncate
                                         line={4}
                                         truncateText="…"
-                                        text={short.content}/>
+                                        text= {short.content}/>
+                                        {console.log(`This is short content: ${short.content}`)}
+                                        <br></br>
                                         <ReadBtn>Read More</ReadBtn>
                                     </CarouselContent>
-                             
                             )
                         })}
                     </Carousel>
-
+                    </CarouselContainer>
                     <SecHomeCon>
                         {this.state.blogs.map((blog) => {
                             let date = new Date(blog.created_at)
@@ -98,6 +95,7 @@ class Home extends Component {
                                         line={4}
                                         truncateText="…"
                                         text={blog.content}/>
+                                        <br></br>
                                     <ReadBtn>Read More</ReadBtn>
 
                                 </BlogCon>
